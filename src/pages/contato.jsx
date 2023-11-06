@@ -1,55 +1,30 @@
-import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "./contato.css"
 
-function Contato() {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [assunto, setAssunto] = useState('');
-  const [mensagem, setMensagem] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const templateParams = {
-      nome,
-      email,
-      assunto,
-      mensagem,
-    };
-
-    emailjs
-      .send(
-        'SEU_SERVICE_ID', // Substitua pelo seu Service ID do EmailJS
-        'SEU_TEMPLATE_ID', // Substitua pelo seu Template ID do EmailJS
-        templateParams,
-        'SEU_USER_ID' // Substitua pelo seu User ID do EmailJS
-      )
-      .then(
-        (response) => {
-          alert('E-mail enviado com sucesso!');
-        },
-        (error) => {
-          console.error('Erro ao enviar o e-mail:', error);
-          alert('Erro ao enviar o e-mail. Tente novamente mais tarde.');
-        }
-      );
-
-    // Limpe os campos do formulário
-    setNome('');
-    setEmail('');
-    setAssunto('');
-    setMensagem('');
-  };
-
+const Contato = () => {
   return (
     <div className="contato">
-      <h2>Entre em Contato</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Seu código de formulário existente aqui */}
-        <button type="submit">Enviar</button>
-      </form>
+      <h2>Entre em contato:</h2>
+      <ul className="contato-links">
+        <li>
+          <Link to="https://www.instagram.com/seu-instagram" target="_blank">
+            Instagram
+          </Link>
+        </li>
+        <li>
+          <Link to="https://api.whatsapp.com/send?phone=seu-numero-de-telefone" target="_blank">
+            WhatsApp
+          </Link>
+        </li>
+        <li>
+          <Link to="https://www.tiktok.com/@seu-usuario-tiktok" target="_blank">
+            TikTok
+          </Link>
+        </li>
+      </ul>
     </div>
   );
-}
+};
 
 export default Contato;
